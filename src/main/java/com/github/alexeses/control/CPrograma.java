@@ -1,52 +1,50 @@
 package com.github.alexeses.control;
 
 import com.github.alexeses.gui.VMenuConsultas;
-import com.github.alexeses.gui.VMenuEncuestas;
+import com.github.alexeses.gui.VMenuCorredor;
 import com.github.alexeses.gui.VMenuMain;
-import com.github.alexeses.model.GestionEncuestas;
+import com.github.alexeses.model.GestorCarrera;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CPrograma implements ActionListener {
-    GestionEncuestas gE;
+    GestorCarrera gC;
     VMenuConsultas vC;
-    VMenuEncuestas vE;
+    VMenuCorredor vE;
     VMenuMain vM;
 
-    public CPrograma(GestionEncuestas gE, VMenuConsultas vC, VMenuEncuestas vE, VMenuMain vM) {
-        this.gE = gE;
+    public CPrograma(GestorCarrera gC, VMenuConsultas vC, VMenuCorredor vE, VMenuMain vM) {
+        this.gC = gC;
         this.vC = vC;
         this.vE = vE;
         this.vM = vM;
     }
+
+    // ===*+ ACTION LISTENERS +*===
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JMenuItem) {
             if (e.getSource().equals(vM.getjMenuEncuesta())) {
                 vM.cargarPanel(vE);
-                System.out.println("Encuesta");
             }
         }
-
-        vE.getRd00().addActionListener(new ActionListener() {
+        vE.getBtnLimpiar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TADO: Me he quedado en el controlador de los botones,
-                // si seleccionas uno, se deben quitar los demás.
-                if (vE.getRd00().isSelected()) {
-                    vE.offBoton(0);
-                    System.out.println("00");
-                } else if (vE.getRd01().isSelected()) {
-                    vE.offBoton(1);
-                    System.out.println("Boton 1");
-                } else if (vE.getRd02().isSelected()) {
-                    vE.offBoton(2);
-                    System.out.println("Boton 2");
-                }
+                vE.borrarEncuesta();
             }
         });
+
+        vE.getBtnGuardar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vE.guardarEncuesta();
+            }
+        });
+
+
     }
 }

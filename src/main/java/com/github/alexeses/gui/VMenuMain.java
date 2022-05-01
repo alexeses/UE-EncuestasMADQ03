@@ -23,6 +23,7 @@ public class VMenuMain extends JFrame {
         setResizable(false);
         setVisible(true);
         setSize(600, 400);
+        System.out.println("Gola");
     }
 
     public void cargarPanel(JPanel panel) {

@@ -2,9 +2,9 @@ package com.github.alexeses;
 
 import com.github.alexeses.control.CPrograma;
 import com.github.alexeses.gui.VMenuConsultas;
-import com.github.alexeses.gui.VMenuEncuestas;
+import com.github.alexeses.gui.VMenuCorredor;
 import com.github.alexeses.gui.VMenuMain;
-import com.github.alexeses.model.GestionEncuestas;
+import com.github.alexeses.model.GestorCarrera;
 
 import java.awt.*;
 
@@ -16,12 +16,12 @@ public class main {
             public void run() {
 
                 VMenuMain vM = new VMenuMain();
-                VMenuEncuestas vE = new VMenuEncuestas();
+                VMenuCorredor vE = new VMenuCorredor();
                 VMenuConsultas vC = new VMenuConsultas();
 
-                GestionEncuestas gE = new GestionEncuestas();
+                GestorCarrera gC = new GestorCarrera();
 
-                CPrograma c = new CPrograma(gE, vC, vE, vM);
+                CPrograma c = new CPrograma(gC, vC, vE, vM);
 
                 vM.setVisible(true);
                 vM.setControlador(c);
