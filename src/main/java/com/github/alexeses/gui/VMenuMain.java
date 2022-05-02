@@ -22,7 +22,7 @@ public class VMenuMain extends JFrame {
         setTitle("Menu Principal");
         setResizable(false);
         setVisible(true);
-        setSize(600, 600);
+        setSize(500, 600);
     }
 
     public void cargarPanel(JPanel panel) {

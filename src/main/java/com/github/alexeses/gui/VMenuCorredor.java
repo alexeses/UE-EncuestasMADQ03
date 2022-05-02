@@ -1,5 +1,6 @@
 package com.github.alexeses.gui;
 
+import com.github.alexeses.Instancia;
 import com.github.alexeses.control.CPrograma;
 import com.github.alexeses.model.Corredor;
 
@@ -65,16 +66,23 @@ public class VMenuCorredor extends JPanel {
         } else if (comboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "La modalidad no puede estar vacia");
         } else {
-
             String nombre = txtNombre.getText();
             int dorsal = Integer.parseInt(txtDorsal.getText());
             int edad = (int) spnEdad.getValue();
             String sexo = rdHombre.isSelected() ? "Hombre" : "Mujer";
             String modalidad = comboBox1.getSelectedItem().toString();
 
-            JOptionPane.showMessageDialog(null, "Nombre: " + nombre + "\nDorsal: " + dorsal + "\nEdad: " + edad + "\nSexo: " + sexo + "\nModalidad: " + modalidad);
+            JOptionPane.showMessageDialog(null, "Nombre: " + nombre + "\nDorsal: " + dorsal +
+                    "\nEdad: " + edad + "\nSexo: " + sexo + "\nModalidad: " + modalidad);
 
-            corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
+            for(Corredor c : Instancia.INSTANCIA.getgC().getCarrera()){
+                if(c.getNombre().equals(nombre) && c.getDorsal() == dorsal){
+                    JOptionPane.showMessageDialog(null, "Ya existe un corredor con ese nombre y dorsal");
+                } else {
+                    corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
+                }
+
+            }
 
         }
         return corredor;
