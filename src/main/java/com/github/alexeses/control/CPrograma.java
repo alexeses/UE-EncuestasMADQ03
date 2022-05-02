@@ -3,6 +3,7 @@ package com.github.alexeses.control;
 import com.github.alexeses.gui.VMenuConsultas;
 import com.github.alexeses.gui.VMenuCorredor;
 import com.github.alexeses.gui.VMenuMain;
+import com.github.alexeses.model.Corredor;
 import com.github.alexeses.model.GestorCarrera;
 
 import javax.swing.*;
@@ -22,13 +23,13 @@ public class CPrograma implements ActionListener {
         this.vM = vM;
     }
 
-    // ===*+ ACTION LISTENERS +*===
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JMenuItem) {
             if (e.getSource().equals(vM.getjMenuEncuesta())) {
                 vM.cargarPanel(vE);
+            } else if (e.getSource().equals(vM.getjMenuConsultar())) {
+                vM.cargarPanel(vC);
             }
         }
         vE.getBtnLimpiar().addActionListener(new ActionListener() {
@@ -41,10 +42,28 @@ public class CPrograma implements ActionListener {
         vE.getBtnGuardar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vE.guardarEncuesta();
+                Corredor corredor = vE.obtenerCorredor();
+                if(corredor == null) return;
+                gC.addEncuesta(corredor);
+                vE.borrarEncuesta();
             }
         });
 
-
+        vC.getBtnBuscar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (vC.getCmbSeleccion().getSelectedItem().equals("Todo")) {
+                    System.out.println("Todo");
+                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.TODOS);
+                } else if (vC.getCmbSeleccion().getSelectedItem().equals("Hombres")) {
+                    System.out.println("Hombres");
+                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.HOMBRES);
+                } else if (vC.getCmbSeleccion().getSelectedItem().equals("Mujeres")) {
+                    System.out.println("Mujeres");
+                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.MUJERES);
+                }
+                Instancia.INSTANCIA.getvC().updateTable();
+            }
+        });
     }
 }

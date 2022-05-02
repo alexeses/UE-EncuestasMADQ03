@@ -4,8 +4,6 @@ import com.github.alexeses.control.CPrograma;
 import com.github.alexeses.model.Corredor;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class VMenuCorredor extends JPanel {
     private JPanel principal;
@@ -39,7 +37,6 @@ public class VMenuCorredor extends JPanel {
         rdHombre.setSelected(false);
         rdMujer.setSelected(false);
         comboBox1.setSelectedIndex(0);
-        System.out.println("Borrar");
     }
 
     public JButton getBtnGuardar() {
@@ -50,7 +47,7 @@ public class VMenuCorredor extends JPanel {
         return btnLimpiar;
     }
 
-    public void guardarEncuesta() {
+    public Corredor obtenerCorredor() {
         Corredor corredor = null;
 
         if (txtNombre.getText().isEmpty()) {
@@ -76,9 +73,10 @@ public class VMenuCorredor extends JPanel {
             String modalidad = comboBox1.getSelectedItem().toString();
 
             JOptionPane.showMessageDialog(null, "Nombre: " + nombre + "\nDorsal: " + dorsal + "\nEdad: " + edad + "\nSexo: " + sexo + "\nModalidad: " + modalidad);
-            borrarEncuesta();
 
-            //corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
+            corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
+
         }
+        return corredor;
     }
 }

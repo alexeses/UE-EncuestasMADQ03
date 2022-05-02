@@ -1,5 +1,7 @@
 package com.github.alexeses.model;
 
+import javax.swing.*;
+
 public class Corredor {
     private String nombre;
     private int dorsal;
@@ -13,5 +15,25 @@ public class Corredor {
         this.sexo = sexo;
         this.edad = edad;
         this.modalidad = modalidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getDorsal() {
+        return dorsal;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public String getModalidad() {
+        return modalidad;
     }
 }

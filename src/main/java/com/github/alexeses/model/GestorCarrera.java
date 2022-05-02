@@ -4,17 +4,25 @@ import java.util.ArrayList;
 
 public class GestorCarrera {
 
-    private ArrayList<Corredor> carrera;
+    public ArrayList<Corredor> carrera;
 
-    public void setEncuestas() {
+    public GestorCarrera(){
         carrera = new ArrayList<>();
     }
 
-    public void addEncuesta(Corredor encuesta) {
-        carrera.add(encuesta);
+    public ArrayList<Corredor> getCarrera() {
+        return carrera;
     }
 
-    public Corredor getEncuesta(int i) {
-        return carrera.get(i);
+    public void addEncuesta(Corredor corredor) {
+        carrera.add(corredor);
+        Instancia.INSTANCIA.getvC().updateTable();
     }
+
+    public void verCarrera(){
+        for(Corredor corredor : carrera){
+            System.out.println(corredor.toString());
+        }
+    }
+
 }
