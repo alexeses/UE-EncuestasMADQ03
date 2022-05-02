@@ -1,5 +1,7 @@
 package com.github.alexeses.model;
 
+import com.github.alexeses.Instancia;
+
 import java.util.ArrayList;
 
 public class GestorCarrera {

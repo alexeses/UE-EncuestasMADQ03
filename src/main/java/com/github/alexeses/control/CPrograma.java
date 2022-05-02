@@ -1,5 +1,7 @@
 package com.github.alexeses.control;
 
+import com.github.alexeses.Instancia;
+import com.github.alexeses.gui.Filtro;
 import com.github.alexeses.gui.VMenuConsultas;
 import com.github.alexeses.gui.VMenuCorredor;
 import com.github.alexeses.gui.VMenuMain;
@@ -11,20 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CPrograma implements ActionListener {
-    GestorCarrera gC;
-    VMenuConsultas vC;
-    VMenuCorredor vE;
-    VMenuMain vM;
-
-    public CPrograma(GestorCarrera gC, VMenuConsultas vC, VMenuCorredor vE, VMenuMain vM) {
-        this.gC = gC;
-        this.vC = vC;
-        this.vE = vE;
-        this.vM = vM;
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        VMenuMain vM = Instancia.INSTANCIA.getvM();
+        VMenuCorredor vE = Instancia.INSTANCIA.getvE();
+        VMenuConsultas vC = Instancia.INSTANCIA.getvC();
+        GestorCarrera gC = Instancia.INSTANCIA.getgC();
+
         if (e.getSource() instanceof JMenuItem) {
             if (e.getSource().equals(vM.getjMenuEncuesta())) {
                 vM.cargarPanel(vE);

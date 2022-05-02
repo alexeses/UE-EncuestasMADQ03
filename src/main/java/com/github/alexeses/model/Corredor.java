@@ -3,6 +3,7 @@ package com.github.alexeses.model;
 import javax.swing.*;
 
 public class Corredor {
+
     private String nombre;
     private int dorsal;
     private String sexo;
