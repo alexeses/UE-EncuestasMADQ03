@@ -11,6 +11,7 @@ import com.github.alexeses.model.GestorCarrera;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class CPrograma implements ActionListener {
 
@@ -28,38 +29,27 @@ public class CPrograma implements ActionListener {
                 vM.cargarPanel(vC);
             }
         }
-        vE.getBtnLimpiar().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vE.borrarEncuesta();
-            }
+        vE.getBtnLimpiar().addActionListener(e1 -> vE.borrarEncuesta());
+
+        vE.getBtnGuardar().addActionListener(e12 -> {
+            Corredor corredor = vE.obtenerCorredor();
+            if(corredor == null) return;
+            gC.addEncuesta(corredor);
+            vE.borrarEncuesta();
         });
 
-        vE.getBtnGuardar().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Corredor corredor = vE.obtenerCorredor();
-                if(corredor == null) return;
-                gC.addEncuesta(corredor);
-                vE.borrarEncuesta();
+        vC.getBtnBuscar().addActionListener(e13 -> {
+            if (Objects.equals(vC.getCmbSeleccion().getSelectedItem(), "Todo")) {
+                System.out.println("Todo");
+                Instancia.INSTANCIA.getvC().setFiltro(Filtro.TODOS);
+            } else if (Objects.equals(vC.getCmbSeleccion().getSelectedItem(), "Hombres")) {
+                System.out.println("Hombres");
+                Instancia.INSTANCIA.getvC().setFiltro(Filtro.HOMBRES);
+            } else if (Objects.equals(vC.getCmbSeleccion().getSelectedItem(), "Mujeres")) {
+                System.out.println("Mujeres");
+                Instancia.INSTANCIA.getvC().setFiltro(Filtro.MUJERES);
             }
-        });
-
-        vC.getBtnBuscar().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (vC.getCmbSeleccion().getSelectedItem().equals("Todo")) {
-                    System.out.println("Todo");
-                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.TODOS);
-                } else if (vC.getCmbSeleccion().getSelectedItem().equals("Hombres")) {
-                    System.out.println("Hombres");
-                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.HOMBRES);
-                } else if (vC.getCmbSeleccion().getSelectedItem().equals("Mujeres")) {
-                    System.out.println("Mujeres");
-                    Instancia.INSTANCIA.getvC().setFiltro(Filtro.MUJERES);
-                }
-                Instancia.INSTANCIA.getvC().updateTable();
-            }
+            Instancia.INSTANCIA.getvC().updateTable();
         });
     }
 }

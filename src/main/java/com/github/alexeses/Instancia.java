@@ -20,20 +20,17 @@ public class Instancia {
     public Instancia() {
         INSTANCIA = this;
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+        EventQueue.invokeLater(() -> {
 
-                vM = new VMenuMain();
-                vE = new VMenuCorredor();
-                gC = new GestorCarrera();
-                vC = new VMenuConsultas();
+            vM = new VMenuMain();
+            vE = new VMenuCorredor();
+            gC = new GestorCarrera();
+            vC = new VMenuConsultas();
 
-                c = new CPrograma();
+            c = new CPrograma();
 
-                vM.setVisible(true);
-                vM.setControlador(c);
-            }
+            vM.setVisible(true);
+            vM.setControlador(c);
         });
     }
 

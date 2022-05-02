@@ -21,10 +21,4 @@ public class GestorCarrera {
         Instancia.INSTANCIA.getvC().updateTable();
     }
 
-    public void verCarrera(){
-        for(Corredor corredor : carrera){
-            System.out.println(corredor.toString());
-        }
-    }
-
 }

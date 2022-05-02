@@ -1,19 +1,19 @@
 package com.github.alexeses.gui;
 
-import com.github.alexeses.Instancia;
 import com.github.alexeses.control.CPrograma;
 import com.github.alexeses.model.Corredor;
 
 import javax.swing.*;
+import java.util.Objects;
 
 public class VMenuCorredor extends JPanel {
     private JPanel principal;
     private JTextField txtNombre;
     private JTextField txtDorsal;
     private JLabel lblNombre;
-    private JLabel lblDorsal;
     private JLabel lblSexo;
     private JLabel lblEdad;
+    private JLabel lblDorsal;
     private JSpinner spnEdad;
     private JComboBox comboBox1;
     private JButton btnGuardar;
@@ -55,7 +55,7 @@ public class VMenuCorredor extends JPanel {
             JOptionPane.showMessageDialog(null, "El nombre no puede estar vacio");
         } else if (txtDorsal.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "El dorsal no puede estar vacio");
-        } else if (!txtDorsal.getText().matches("[0-9]+")) {
+        } else if (!txtDorsal.getText().matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "El dorsal debe ser un numero");
         } else if (txtDorsal.getText().length() > 5) {
             JOptionPane.showMessageDialog(null, "El dorsal no puede tener mas de 5 caracteres");
@@ -70,19 +70,12 @@ public class VMenuCorredor extends JPanel {
             int dorsal = Integer.parseInt(txtDorsal.getText());
             int edad = (int) spnEdad.getValue();
             String sexo = rdHombre.isSelected() ? "Hombre" : "Mujer";
-            String modalidad = comboBox1.getSelectedItem().toString();
+            String modalidad = Objects.requireNonNull(comboBox1.getSelectedItem()).toString();
 
             JOptionPane.showMessageDialog(null, "Nombre: " + nombre + "\nDorsal: " + dorsal +
                     "\nEdad: " + edad + "\nSexo: " + sexo + "\nModalidad: " + modalidad);
 
-            for(Corredor c : Instancia.INSTANCIA.getgC().getCarrera()){
-                if(c.getNombre().equals(nombre) && c.getDorsal() == dorsal){
-                    JOptionPane.showMessageDialog(null, "Ya existe un corredor con ese nombre y dorsal");
-                } else {
-                    corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
-                }
-
-            }
+            corredor = new Corredor(nombre, dorsal, sexo, edad, modalidad);
 
         }
         return corredor;

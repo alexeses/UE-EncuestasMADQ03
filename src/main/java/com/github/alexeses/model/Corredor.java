@@ -1,14 +1,12 @@
 package com.github.alexeses.model;
 
-import javax.swing.*;
-
 public class Corredor {
 
-    private String nombre;
-    private int dorsal;
-    private String sexo;
-    private int edad;
-    private String modalidad;
+    private final String nombre;
+    private final int dorsal;
+    private final String sexo;
+    private final int edad;
+    private final String modalidad;
 
     public Corredor(String nombre, int dorsal, String sexo, int edad, String modalidad) {
         this.nombre = nombre;

@@ -2,7 +2,6 @@ package com.github.alexeses.gui;
 
 import com.github.alexeses.Instancia;
 import com.github.alexeses.model.Corredor;
-import com.github.alexeses.model.GestorCarrera;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
